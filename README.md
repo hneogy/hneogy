@@ -16,37 +16,37 @@ On 11 July 2026 the satellite catalog passed 99,999 objects, the most a TLE's fi
 
 Each run by hand against all seventeen cases on 2026-09-24, at the version named, and every finding reproduced on the library's own code before it was reported. These are results against a specific version on a specific date, not verdicts on the projects; six of the eight read only TLE, and CelesTrak's TLE feed omits the objects that trigger these failures, so their users are not affected today.
 
-**PyEphem 4.2.1** — [#296](https://github.com/brandon-rhodes/pyephem/issues/296)  
-Five-digit sets exact, epoch within a microsecond.  
-Alpha-5 fields read as catalog number 0, silently.
+> **PyEphem 4.2.1** — [#296](https://github.com/brandon-rhodes/pyephem/issues/296)  
+> Five-digit sets exact, epoch within a microsecond.  
+> Alpha-5 fields read as catalog number 0, silently.
 
-**satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185)  
-All 604 TLE records exact, nine-digit OMM ids accepted.  
-OMM JSON epochs truncated to milliseconds; the TLE catalog field left as a string.
+> **satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185)  
+> All 604 TLE records exact, nine-digit OMM ids accepted.  
+> OMM JSON epochs truncated to milliseconds; the TLE catalog field left as a string.
 
-**Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426)  
-Five-digit ids right, every element but one exact.  
-Alpha-5 fields become 0; the mean motion loses its last digit on every record.
+> **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426)  
+> Five-digit ids right, every element but one exact.  
+> Alpha-5 fields become 0; the mean motion loses its last digit on every record.
 
-**gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751)  
-Five-digit ids right, 1998 epoch pivots.  
-Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped.
+> **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751)  
+> Five-digit ids right, 1998 epoch pivots.  
+> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped.
 
-**SatDump 1.2.2 and master** — [#1221](https://github.com/SatDump/SatDump/issues/1221)  
-Five-digit sets exact, six-digit CSV ids on master.  
-Alpha-5 sets dropped silently; SupGP CSV rejected whole on master.
+> **SatDump 1.2.2 and master** — [#1221](https://github.com/SatDump/SatDump/issues/1221)  
+> Five-digit sets exact, six-digit CSV ids on master.  
+> Alpha-5 sets dropped silently; SupGP CSV rejected whole on master.
 
-**libsgp4 master and PR #42** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874)  
-Five-digit sets exact but for an 8 µs epoch rounding, CSV takes six-digit ids.  
-Master refuses every Alpha-5 set; the PR's letter table drops X and shifts Y and Z.
+> **libsgp4 master and PR #42** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874)  
+> Five-digit sets exact but for an 8 µs epoch rounding, CSV takes six-digit ids.  
+> Master refuses every Alpha-5 set; the PR's letter table drops X and shifts Y and Z.
 
-**tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62)  
-Five-digit sets exact, checksums count letters as 0.  
-Alpha-5 fields give NaN with no error; two-digit years pivot at 50.
+> **tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62)  
+> Five-digit sets exact, checksums count letters as 0.  
+> Alpha-5 fields give NaN with no error; two-digit years pivot at 50.
 
-**astroz main d558933** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98)  
-Carried elements exact, nine-digit JSON ids as integers.  
-Alpha-5 decoded without skipping I and O; public epoch field off by hundreds of days.
+> **astroz main d558933** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98)  
+> Carried elements exact, nine-digit JSON ids as integers.  
+> Alpha-5 decoded without skipping I and O; public epoch field off by hundreds of days.
 
 ## What has landed
 
