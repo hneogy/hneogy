@@ -10,7 +10,7 @@ Orbital data tooling · NEOGY LLC
 
 ## The problem, and the corpus
 
-On 11 July 2026 the satellite catalog passed 99,999 objects, the most a TLE's five-digit field can hold; provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: seventeen cases built from real CelesTrak data with no invented element sets, a runner, and adapters for testing your own parser.
+On 11 July 2026 the satellite catalog passed 99,999 objects, the most a TLE's five-digit field can hold; provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: seventeen cases built from real CelesTrak data with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
 
 ## Eight libraries against the corpus
 
@@ -52,15 +52,16 @@ Each run by hand against all seventeen cases on 2026-09-24, at the version named
 
 - One fix merged upstream: python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172), the empty `OBJECT_ID` in OMM XML, merged 2026-09-24 and not yet in a release.
 - Eleven reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for two, each stating what was run and how to reproduce it.
-- Corpus v0.2.1 archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.22926017](https://doi.org/10.5281/zenodo.22926017).
+- Corpus v0.3.0 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.22986178](https://doi.org/10.5281/zenodo.22986178).
 
 ## Quick start
 
 ```bash
-git clone https://github.com/hneogy/gp-omm-conformance.git && cd gp-omm-conformance
-python3 tools/fetch.py                                              # once; fetches the fixtures under CelesTrak's usage policy
-python3 -m gpconf run --adapter tests.adapters.reference:Parser    # the control
-python3 -m gpconf run --adapter mypkg.gpconf_adapter:Parser --json report.json   # your parser
+pip install gpconf
+gpconf fetch                                                  # once; fetches the fixtures under CelesTrak's usage policy
+gpconf run --preset reference                                 # the control
+gpconf presets                                                # libraries testable with no adapter written
+gpconf run --adapter mypkg.gpconf_adapter:Parser --json report.json   # your parser
 ```
 
 ## Elsewhere
