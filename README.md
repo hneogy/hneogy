@@ -10,7 +10,7 @@ Orbital data tooling · NEOGY LLC
 
 ## The problem, and the corpus
 
-On 11 July 2026 the satellite catalog passed 99,999 objects, the most a TLE's five-digit field can hold; provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: seventeen cases built from real CelesTrak data with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
+On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portuguese CubeSat SARAMAGO) after exhausting the five-digit range, which ends at 69999 (CelesTrak); provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: seventeen cases built from real CelesTrak data with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
 
 ## Eight libraries against the corpus
 
