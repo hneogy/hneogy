@@ -14,44 +14,44 @@ On 11 July 2026 the satellite catalog passed 99,999 objects, the most a TLE's fi
 
 ## Eight libraries against the corpus
 
-Each run by hand against all seventeen cases on 2026-09-24, at the version named, and every finding reproduced on the library's own code before it was reported. These are results against a specific version on a specific date, not verdicts on the projects; six of the eight read only TLE, and CelesTrak's TLE feed omits the objects that trigger these failures, so their users are not affected today.
+Each run by hand against all seventeen cases on 2026-09-24, at the version named, and every finding reproduced on the library's own code before it was reported. These are results against a specific version on a specific date, not verdicts on the projects. All eight failed on Alpha-5 TLEs in these runs, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today.
 
 > **PyEphem 4.2.1** — [#296](https://github.com/brandon-rhodes/pyephem/issues/296)  
 > Five-digit sets exact, epoch within a microsecond.  
 > Alpha-5 fields read as catalog number 0, silently.
 
-> **satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185)  
+> **satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), [PR #187](https://github.com/shashwatak/satellite-js/pull/187)  
 > All 604 TLE records exact, nine-digit OMM ids accepted.  
-> OMM JSON epochs truncated to milliseconds; the TLE catalog field left as a string.
+> OMM JSON epochs truncated to ms (#186 merged); TLE ids as strings (#187 open).
 
 > **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426)  
 > Five-digit ids right, every element but one exact.  
 > Alpha-5 fields become 0; the mean motion loses its last digit on every record.
 
-> **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751)  
+> **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767)  
 > Five-digit ids right, 1998 epoch pivots.  
-> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped.
+> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped (#767 open).
 
 > **SatDump 1.2.2 and master** — [#1221](https://github.com/SatDump/SatDump/issues/1221)  
 > Five-digit sets exact, six-digit CSV ids on master.  
 > Alpha-5 sets dropped silently; SupGP CSV rejected whole on master.
 
-> **libsgp4 master and PR #42** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874)  
+> **libsgp4 master 661e057** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [#44](https://github.com/dnwrnr/sgp4/issues/44#issuecomment-5848881779)  
 > Five-digit sets exact but for an 8 µs epoch rounding, CSV takes six-digit ids.  
-> Master refuses every Alpha-5 set; the PR's letter table drops X and shifts Y and Z.
+> Every Alpha-5 set refused; v3.0 decodes them correctly, #45's rounding unresolved.
 
 > **tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62)  
 > Five-digit sets exact, checksums count letters as 0.  
 > Alpha-5 fields give NaN with no error; two-digit years pivot at 50.
 
-> **astroz main d558933** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98)  
+> **astroz main d558933** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98), [#102](https://github.com/ATTron/astroz/issues/102)  
 > Carried elements exact, nine-digit JSON ids as integers.  
-> Alpha-5 decoded without skipping I and O; public epoch field off by hundreds of days.
+> Alpha-5 (#97) and epoch (#98) fixed in v0.13.0, seconds (#102) in v0.14.0; now MIT.
 
 ## What has landed
 
-- One fix merged upstream: python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172), the empty `OBJECT_ID` in OMM XML, merged 2026-09-24 and not yet in a release.
-- Eleven reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for two, each stating what was run and how to reproduce it.
+- Four fixes merged upstream: two pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond), neither yet in a release; and astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0, and [PR #104](https://github.com/ATTron/astroz/pull/104), for #102, released in v0.14.0.
+- Twelve reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for three, each stating what was run and how to reproduce it.
 - Corpus v0.3.0 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.22986178](https://doi.org/10.5281/zenodo.22986178).
 
 ## Quick start
