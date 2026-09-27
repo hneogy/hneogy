@@ -10,11 +10,11 @@ Orbital data tooling · NEOGY LLC
 
 ## The problem, and the corpus
 
-On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portuguese CubeSat SARAMAGO) after exhausting the five-digit range, which ends at 69999 (CelesTrak); provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: seventeen cases built from real CelesTrak data with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
+On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portuguese CubeSat SARAMAGO) after exhausting the five-digit range, which ends at 69999 (CelesTrak); provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: eighteen cases built from real CelesTrak data with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
 
 ## Eight libraries against the corpus
 
-Each run by hand against all seventeen cases on 2026-09-24, at the version named, and every finding reproduced on the library's own code before it was reported. These are results against a specific version on a specific date, not verdicts on the projects. All eight failed on Alpha-5 TLEs in these runs, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today.
+Each run by hand at the version named, six on 2026-09-24 against the seventeen cases of the time and libsgp4 and astroz on 2026-09-27 against v0.4.0's eighteen, and every finding reproduced on the library's own code before it was reported. These are results against a specific version on a specific date, not verdicts on the projects. All eight failed on Alpha-5 TLEs when first run, on 2026-09-24, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today.
 
 > **PyEphem 4.2.1** — [#296](https://github.com/brandon-rhodes/pyephem/issues/296)  
 > Five-digit sets exact, epoch within a microsecond.  
@@ -36,15 +36,15 @@ Each run by hand against all seventeen cases on 2026-09-24, at the version named
 > Five-digit sets exact, six-digit CSV ids on master.  
 > Alpha-5 sets dropped silently; SupGP CSV rejected whole on master.
 
-> **libsgp4 master 661e057** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [#44](https://github.com/dnwrnr/sgp4/issues/44#issuecomment-5848881779)  
+> **libsgp4 v3.0** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [#44](https://github.com/dnwrnr/sgp4/issues/44#issuecomment-5848881779)  
 > Five-digit sets exact but for an 8 µs epoch rounding, CSV takes six-digit ids.  
-> Every Alpha-5 set refused; v3.0 decodes them correctly, #45's rounding unresolved.
+> Alpha-5 decoded correctly since v3.0; SupGP CSV refused whole, #45's rounding unresolved.
 
 > **tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62)  
 > Five-digit sets exact, checksums count letters as 0.  
 > Alpha-5 fields give NaN with no error; two-digit years pivot at 50.
 
-> **astroz main d558933** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98), [#102](https://github.com/ATTron/astroz/issues/102)  
+> **astroz v0.14.0** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98), [#102](https://github.com/ATTron/astroz/issues/102)  
 > Carried elements exact, nine-digit JSON ids as integers.  
 > Alpha-5 (#97) and epoch (#98) fixed in v0.13.0, seconds (#102) in v0.14.0; now MIT.
 
@@ -52,7 +52,7 @@ Each run by hand against all seventeen cases on 2026-09-24, at the version named
 
 - Four fixes merged upstream: two pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond), neither yet in a release; and astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0, and [PR #104](https://github.com/ATTron/astroz/pull/104), for #102, released in v0.14.0.
 - Twelve reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for three, each stating what was run and how to reproduce it.
-- Corpus v0.3.0 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.22986178](https://doi.org/10.5281/zenodo.22986178).
+- Corpus v0.4.0 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23002261](https://doi.org/10.5281/zenodo.23002261).
 
 ## Quick start
 
