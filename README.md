@@ -38,7 +38,7 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 > **libsgp4 v3.0** — [#45](https://github.com/dnwrnr/sgp4/issues/45), [#44](https://github.com/dnwrnr/sgp4/issues/44#issuecomment-5848881779)  
 > Five-digit sets exact but for an 8 µs epoch rounding, CSV takes six-digit ids.  
-> Alpha-5 decoded correctly since v3.0; SupGP CSV refused whole, #45's rounding unresolved.
+> Alpha-5 decoded since v3.0; SupGP CSV refused whole, #45's rounding unresolved.
 
 > **tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62)  
 > Five-digit sets exact, checksums count letters as 0.  
