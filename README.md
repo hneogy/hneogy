@@ -52,7 +52,7 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 - Four fixes merged upstream: two pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond), neither yet in a release; and astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0, and [PR #104](https://github.com/ATTron/astroz/pull/104), for #102, released in v0.14.0.
 - Twelve reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for three, each stating what was run and how to reproduce it.
-- Corpus v0.4.0 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23002261](https://doi.org/10.5281/zenodo.23002261).
+- Corpus v0.5.0 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23093982](https://doi.org/10.5281/zenodo.23093982).
 
 ## Quick start
 
