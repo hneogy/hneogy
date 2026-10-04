@@ -8,11 +8,13 @@ Orbital data tooling · NEOGY LLC
 [![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22867654-1682D4?style=flat-square)](https://doi.org/10.5281/zenodo.22867654)
 [![corpus CI](https://img.shields.io/github/actions/workflow/status/hneogy/gp-omm-conformance/ci.yml?branch=main&style=flat-square&label=corpus%20CI)](https://github.com/hneogy/gp-omm-conformance/actions/workflows/ci.yml)
 
-## The problem, and the corpus
+## The satellite catalog passed 99,999. Does your software know?
 
-On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portuguese CubeSat SARAMAGO) after exhausting the five-digit range, which ends at 69999 (CelesTrak); provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms. **[gp-omm-conformance](https://github.com/hneogy/gp-omm-conformance)** is a test corpus for that migration: eighteen cases built from real CelesTrak data with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
+On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portuguese CubeSat SARAMAGO) after exhausting the five-digit range, which ends at 69999 (CelesTrak); provider data now carries six-digit, nine-digit and lettered (Alpha-5) catalog numbers, and libraries reading them may not expect these forms.
 
-## Eight libraries against the corpus
+**[gpconf](https://github.com/hneogy/gp-omm-conformance)** is a free test kit that tells you whether your satellite software handles catalog numbers above 99,999 — built from real CelesTrak data, with every expected answer traced to its source. It is the GP/OMM conformance corpus: eighteen cases with no invented element sets, a runner that installs with `pip install gpconf`, presets that test a library with no adapter written, and a GitHub Action for CI.
+
+## Eight libraries against gpconf
 
 Each run by hand at the version named, six on 2026-09-24 against the seventeen cases of the time and libsgp4 and astroz on 2026-09-27 against v0.4.0's eighteen, and every finding reproduced on the library's own code before it was reported. These are results against a specific version on a specific date, not verdicts on the projects. All eight failed on Alpha-5 TLEs when first run, on 2026-09-24, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today.
 
@@ -50,9 +52,9 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 ## What has landed
 
-- Four fixes merged upstream: two pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond), neither yet in a release; and astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0, and [PR #104](https://github.com/ATTron/astroz/pull/104), for #102, released in v0.14.0.
+- Five fixes merged upstream: three pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond) and [PR #187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), none yet in a release; astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0; and libsgp4's own [#46](https://github.com/dnwrnr/sgp4/pull/46), released in v3.0, two days after the corpus's results on its [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874).
 - Twelve reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for three, each stating what was run and how to reproduce it.
-- Corpus v0.5.1 released, on PyPI as [gpconf](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23130868](https://doi.org/10.5281/zenodo.23130868).
+- gpconf v0.5.1 released, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23130868](https://doi.org/10.5281/zenodo.23130868).
 
 ## Quick start
 
@@ -66,4 +68,4 @@ gpconf run --adapter mypkg.gpconf_adapter:Parser --json report.json   # your par
 
 ## Elsewhere
 
-NEOGY LLC, orbital data tooling. Results and a live tracker at [gpconf.neogy.dev](https://gpconf.neogy.dev) · [the corpus](https://github.com/hneogy/gp-omm-conformance) · [neogy.dev](https://neogy.dev)
+NEOGY LLC, orbital data tooling. Results and a live tracker at [gpconf.neogy.dev](https://gpconf.neogy.dev) · [gpconf](https://github.com/hneogy/gp-omm-conformance) · [neogy.dev](https://neogy.dev)
