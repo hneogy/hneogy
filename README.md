@@ -24,7 +24,7 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 > **satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), [PR #187](https://github.com/shashwatak/satellite-js/pull/187)  
 > All 604 five-digit TLE sets exact, nine-digit OMM ids accepted.  
-> OMM JSON epochs truncated to ms (#186 merged); TLE ids as strings (#187 open).
+> OMM JSON epochs truncated to ms (#186) and TLE ids as strings (#187), both merged, in no release yet.
 
 > **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426)  
 > Five-digit ids right, every element but one exact.  
@@ -53,7 +53,7 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 ## What has landed
 
 - Five fixes merged upstream: three pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond) and [PR #187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), none yet in a release; astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0; and libsgp4's own [#46](https://github.com/dnwrnr/sgp4/pull/46), released in v3.0, two days after the corpus's results on its [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874).
-- Twelve reports filed with ten projects, the eight above plus python-sgp4 and strf, astroz accounting for three, each stating what was run and how to reproduce it.
+- Nineteen reports filed with eleven projects, the eight above plus python-sgp4, strf and CelesTrak's fundamentals-of-astrodynamics, astroz accounting for three, each stating what was run and how to reproduce it.
 - gpconf v0.6.1 released, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23144821](https://doi.org/10.5281/zenodo.23144821).
 
 ## Quick start
