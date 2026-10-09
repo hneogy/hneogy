@@ -26,13 +26,13 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 > All 604 five-digit TLE sets exact, nine-digit OMM ids accepted.  
 > OMM JSON epochs truncated to ms (#186) and TLE ids as strings (#187), both merged, in no release yet.
 
-> **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426)  
+> **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428)  
 > Five-digit ids right, every element but one exact.  
-> Alpha-5 fields become 0; the mean motion loses its last digit on every record.
+> Alpha-5 fields become 0; the mean motion lost its last digit on every record — fixed by PR #428, merged 2026-10-08, in no release yet.
 
-> **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767)  
+> **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906)  
 > Five-digit ids right, 1998 epoch pivots.  
-> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped (#767 open).
+> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped (#767 open). A set missing a line dropped the rest of its group (#906).
 
 > **SatDump 1.2.2 and master** — [#1221](https://github.com/SatDump/SatDump/issues/1221)  
 > Five-digit sets exact, six-digit CSV ids on master.  
@@ -42,9 +42,9 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 > Five-digit sets exact but for an 8 µs epoch rounding, CSV takes six-digit ids.  
 > Alpha-5 decoded since v3.0; SupGP CSV refused whole, #45's rounding unresolved.
 
-> **tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62)  
+> **tle.js 5.0.3** — [#62](https://github.com/davidcalhoun/tle.js/issues/62), [PR #64](https://github.com/davidcalhoun/tle.js/pull/64)  
 > Five-digit sets exact, checksums count letters as 0.  
-> Alpha-5 fields give NaN with no error; two-digit years pivot at 50.
+> Alpha-5 fields give NaN with no error; two-digit years pivot at 50. A fix for both is up as PR #64.
 
 > **astroz v0.14.0** — [#97](https://github.com/ATTron/astroz/issues/97), [#98](https://github.com/ATTron/astroz/issues/98), [#102](https://github.com/ATTron/astroz/issues/102)  
 > Carried elements exact, nine-digit JSON ids as integers.  
@@ -52,7 +52,8 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 ## What has landed
 
-- Five fixes merged upstream: three pull requests from this account, python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML) and satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM JSON epochs kept to the microsecond) and [PR #187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), none yet in a release; astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), for #97 and #98, released in v0.13.0; and libsgp4's own [#46](https://github.com/dnwrnr/sgp4/pull/46), released in v3.0, two days after the corpus's results on its [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874).
+- Six fixes merged upstream, four of them pull requests from this account: python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML), satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM epochs kept to the microsecond) and [PR #187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), and Gpredict [PR #428](https://github.com/csete/gpredict/pull/428) (the mean motion's lost digit); plus astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), released in v0.13.0, and libsgp4's own [#46](https://github.com/dnwrnr/sgp4/pull/46), released in v3.0, two days after the corpus's results on [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874). None of the four from this account is in a release yet.
+- Open right now: tle.js [PR #64](https://github.com/davidcalhoun/tle.js/pull/64); with CelesTrak's code repository, [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172) (the Alpha-5 letters I and O decode as numbers) and [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174) (`elnum` and `revnum` come back with the checksum digit on the end); and gods-eye-view [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906), where another contributor has a reference fix up, [kvnloo#167](https://github.com/kvnloo/gods-eye-view/pull/167), crediting the report.
 - Nineteen reports filed with eleven projects, the eight above plus python-sgp4, strf and CelesTrak's fundamentals-of-astrodynamics, astroz accounting for three, each stating what was run and how to reproduce it.
 - gpconf v0.6.1 released, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23144821](https://doi.org/10.5281/zenodo.23144821).
 
@@ -65,6 +66,10 @@ gpconf run --preset reference                                 # the control
 gpconf presets                                                # libraries testable with no adapter written
 gpconf run --adapter mypkg.gpconf_adapter:Parser --json report.json   # your parser
 ```
+
+## GPKit, for Swift
+
+[GPKit](https://github.com/hneogy/GPKit) reads GP data — OMM and TLE, six-digit catalog numbers included — and passes gpconf. v1.0.0, MIT, on the [Swift Package Index](https://swiftpackageindex.com/hneogy/GPKit). Two reports to the Swift readers are open: [SatelliteKit #16](https://github.com/gavineadie/SatelliteKit/issues/16) (B* read 48 orders of magnitude too small) and [swift-sgp4 #4](https://github.com/csanfilippo/swift-sgp4/issues/4) (satellites from 100000 up refused).
 
 ## Elsewhere
 
