@@ -26,9 +26,9 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 > All 604 five-digit TLE sets exact, nine-digit OMM ids accepted.  
 > OMM JSON epochs truncated to ms (#186) and TLE ids as strings (#187), both merged, in no release yet.
 
-> **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428)  
+> **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428), [#427](https://github.com/csete/gpredict/issues/427), [PR #430](https://github.com/csete/gpredict/pull/430)  
 > Five-digit ids right, every element but one exact.  
-> Alpha-5 fields become 0; the mean motion lost its last digit on every record — fixed by PR #428, merged 2026-10-08, in no release yet.
+> Alpha-5 fields become 0. The mean motion lost its last digit on every record: my PR #428 fixed it, merged 2026-10-08. A letter in the epoch field was accepted: Wahaj18 fixed that in PR #430, merged 2026-10-10. Neither is in a release yet.
 
 > **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906)  
 > Five-digit ids right, 1998 epoch pivots.  
@@ -52,10 +52,24 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 ## What has landed
 
-- Six fixes merged upstream, four of them pull requests from this account: python-sgp4 [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (the empty `OBJECT_ID` in OMM XML), satellite.js [PR #186](https://github.com/shashwatak/satellite-js/pull/186) (OMM epochs kept to the microsecond) and [PR #187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), and Gpredict [PR #428](https://github.com/csete/gpredict/pull/428) (the mean motion's lost digit); plus astroz's own [PR #99](https://github.com/ATTron/astroz/pull/99), released in v0.13.0, and libsgp4's own [#46](https://github.com/dnwrnr/sgp4/pull/46), released in v3.0, two days after the corpus's results on [PR #42](https://github.com/dnwrnr/sgp4/pull/42#issuecomment-5824123874). None of the four from this account is in a release yet.
-- Open right now: tle.js [PR #64](https://github.com/davidcalhoun/tle.js/pull/64); in Dave Vallado's reference code, hosted in CelesTrak's repository, [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172) (the Alpha-5 letters I and O decode as numbers) and [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174) (`elnum` and `revnum` come back with the checksum digit on the end); and gods-eye-view [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906), where another contributor has a reference fix up, [kvnloo#167](https://github.com/kvnloo/gods-eye-view/pull/167), crediting the report.
-- Nineteen reports filed with eleven projects, the eight above plus python-sgp4, strf and CelesTrak's fundamentals-of-astrodynamics, astroz accounting for three, each stating what was run and how to reproduce it.
-- gpconf v0.6.1 released, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23144821](https://doi.org/10.5281/zenodo.23144821).
+Every report, with who fixed what and which release has it, is on one page: **[the upstream record](https://gpconf.neogy.dev/upstream/)**. The short version, as of 2026-10-12:
+
+- 23 findings reported to 12 projects.
+- 4 fixed by pull requests of mine that the maintainers merged: python-sgp4 [#172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (an empty `OBJECT_ID` in OMM XML), satellite.js [#186](https://github.com/shashwatak/satellite-js/pull/186) (OMM epochs kept to the microsecond) and [#187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), Gpredict [#428](https://github.com/csete/gpredict/pull/428) (the mean motion's lost digit). None of the four is in a release yet.
+- 6 fixed by someone else after I reported them or posted results on their thread. The maintainers fixed five: astroz in [#99](https://github.com/ATTron/astroz/pull/99) (v0.13.0) and [#104](https://github.com/ATTron/astroz/pull/104) (v0.14.0), libsgp4 in [#46](https://github.com/dnwrnr/sgp4/pull/46) (v3.0), and swift-sgp4 in [4.1.0](https://github.com/csanfilippo/swift-sgp4/issues/4#issuecomment-6105448861). Wahaj18 fixed one, Gpredict [#430](https://github.com/csete/gpredict/pull/430).
+- 10 open, among them tle.js [PR #64](https://github.com/davidcalhoun/tle.js/pull/64), satellite.js [PR #197](https://github.com/shashwatak/satellite-js/pull/197) and python-sgp4 [#173](https://github.com/brandon-rhodes/python-sgp4/issues/173). Two more are open in Dave Vallado's reference code, hosted in CelesTrak's repository, and are not on that page yet: [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172) and [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174).
+- 3 ended another way: one closed by the maintainer without a change, one I closed after the maintainers said both parts were already planned, and one that was someone else's report, where I only tested the open pull request.
+
+## Releases
+
+gpconf is at v0.6.2, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23265462](https://doi.org/10.5281/zenodo.23265462). Since it became installable with pip at 0.3.0:
+
+- 0.4.0 added the eighteenth case, the first to hand a parser corrupt input.
+- 0.5.0 let an adapter say "unsupported" for an operation it does not have, counted each record once, and made the package builds reproducible.
+- 0.5.1 cut a user's fetch from 61 requests and 12.5 MB to 50 requests and 3.2 MB, and made it stop at any response it does not expect.
+- 0.6.0 gave the JSON report a summary a script can rely on, took the name gpconf, and cut the fetch to 46 requests.
+- 0.6.1 made the fetch name the kit and its version in its `User-Agent`.
+- 0.6.2 fixed two things an audit found: a mistyped case name passed silently, and `check-tle` on a missing file printed a traceback.
 
 ## Quick start
 
