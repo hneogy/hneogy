@@ -22,9 +22,9 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 > Five-digit sets exact, epoch within a microsecond.  
 > Alpha-5 fields read as catalog number 0, silently.
 
-> **satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), [PR #187](https://github.com/shashwatak/satellite-js/pull/187)  
+> **satellite.js 7.1.0** — [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), [PR #187](https://github.com/shashwatak/satellite-js/pull/187), [#190](https://github.com/shashwatak/satellite-js/issues/190), [PR #197](https://github.com/shashwatak/satellite-js/pull/197)  
 > All 604 five-digit TLE sets exact, nine-digit OMM ids accepted.  
-> OMM JSON epochs truncated to ms (#186) and TLE ids as strings (#187), both merged, in no release yet.
+> OMM JSON epochs truncated to ms (#186) and TLE ids as strings (#187); a stray letter in a TLE field read with no error (#190), fixed by my PR #197. All three merged, in no release yet.
 
 > **Gpredict 2.6** — [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428), [#427](https://github.com/csete/gpredict/issues/427), [PR #430](https://github.com/csete/gpredict/pull/430)  
 > Five-digit ids right, every element but one exact.  
@@ -32,7 +32,7 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 > **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906)  
 > Five-digit ids right, 1998 epoch pivots.  
-> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped (#767 open). A set missing a line dropped the rest of its group (#906).
+> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped (#767 open). A set missing a line dropped the rest of its group (#906): xiehuanyi fixed that in [PR #936](https://github.com/bilawalsidhu/gods-eye-view/pull/936), merged 2026-10-12, in no release yet.
 
 > **SatDump 1.2.2 and master** — [#1221](https://github.com/SatDump/SatDump/issues/1221)  
 > Five-digit sets exact, six-digit CSV ids on master.  
@@ -52,17 +52,17 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 ## What has landed
 
-Every report, with who fixed what and which release has it, is on one page: **[the upstream record](https://gpconf.neogy.dev/upstream/)**. The short version, as of 2026-10-12:
+Every report, with who fixed what and which release has it, is on one page: **[the upstream record](https://gpconf.neogy.dev/upstream/)**. The short version, as of 2026-10-15:
 
 - 23 findings reported to 12 projects.
-- 4 fixed by pull requests of mine that the maintainers merged: python-sgp4 [#172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (an empty `OBJECT_ID` in OMM XML), satellite.js [#186](https://github.com/shashwatak/satellite-js/pull/186) (OMM epochs kept to the microsecond) and [#187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), Gpredict [#428](https://github.com/csete/gpredict/pull/428) (the mean motion's lost digit). None of the four is in a release yet.
-- 6 fixed by someone else after I reported them or posted results on their thread. The maintainers fixed five: astroz in [#99](https://github.com/ATTron/astroz/pull/99) (v0.13.0) and [#104](https://github.com/ATTron/astroz/pull/104) (v0.14.0), libsgp4 in [#46](https://github.com/dnwrnr/sgp4/pull/46) (v3.0), and swift-sgp4 in [4.1.0](https://github.com/csanfilippo/swift-sgp4/issues/4#issuecomment-6105448861). Wahaj18 fixed one, Gpredict [#430](https://github.com/csete/gpredict/pull/430).
-- 10 open, among them tle.js [PR #64](https://github.com/davidcalhoun/tle.js/pull/64), satellite.js [PR #197](https://github.com/shashwatak/satellite-js/pull/197) and python-sgp4 [#173](https://github.com/brandon-rhodes/python-sgp4/issues/173). Two more are open in Dave Vallado's reference code, hosted in CelesTrak's repository, and are not on that page yet: [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172) and [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174).
+- 5 fixed by pull requests of mine that the maintainers merged: python-sgp4 [#172](https://github.com/brandon-rhodes/python-sgp4/pull/172) (an empty `OBJECT_ID` in OMM XML), satellite.js [#186](https://github.com/shashwatak/satellite-js/pull/186) (OMM epochs kept to the microsecond) and [#187](https://github.com/shashwatak/satellite-js/pull/187) (an Alpha-5 decoder), satellite.js [#197](https://github.com/shashwatak/satellite-js/pull/197) (a stray letter in a TLE field read with no error), Gpredict [#428](https://github.com/csete/gpredict/pull/428) (the mean motion's lost digit). None of the five is in a release yet.
+- 7 fixed by someone else after I reported them or posted results on their thread. The maintainers fixed five: astroz in [#99](https://github.com/ATTron/astroz/pull/99) (v0.13.0) and [#104](https://github.com/ATTron/astroz/pull/104) (v0.14.0), libsgp4 in [#46](https://github.com/dnwrnr/sgp4/pull/46) (v3.0), and swift-sgp4 in [4.1.0](https://github.com/csanfilippo/swift-sgp4/issues/4#issuecomment-6105448861). Two contributors fixed one each: Wahaj18, Gpredict [#430](https://github.com/csete/gpredict/pull/430), and xiehuanyi, gods-eye-view [#936](https://github.com/bilawalsidhu/gods-eye-view/pull/936).
+- 8 open, among them tle.js [PR #64](https://github.com/davidcalhoun/tle.js/pull/64) and python-sgp4 [#173](https://github.com/brandon-rhodes/python-sgp4/issues/173). Two more are open in Dave Vallado's reference code, hosted in CelesTrak's repository, and are not on that page yet: [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172) and [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174).
 - 3 ended another way: one closed by the maintainer without a change, one I closed after the maintainers said both parts were already planned, and one that was someone else's report, where I only tested the open pull request.
 
 ## Releases
 
-gpconf is at v0.6.2, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo: concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), version DOI [10.5281/zenodo.23265462](https://doi.org/10.5281/zenodo.23265462). Since it became installable with pip at 0.3.0:
+gpconf is at v0.7.0, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo under the concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), which always resolves to the latest release; 0.7.0's own is [10.5281/zenodo.23382463](https://doi.org/10.5281/zenodo.23382463). From 0.7.0 it is under Apache-2.0; releases up to 0.6.2 stay MIT. Since it became installable with pip at 0.3.0:
 
 - 0.4.0 added the eighteenth case, the first to hand a parser corrupt input.
 - 0.5.0 let an adapter say "unsupported" for an operation it does not have, counted each record once, and made the package builds reproducible.
@@ -70,6 +70,7 @@ gpconf is at v0.6.2, on [PyPI](https://pypi.org/project/gpconf/) and archived on
 - 0.6.0 gave the JSON report a summary a script can rely on, took the name gpconf, and cut the fetch to 46 requests.
 - 0.6.1 made the fetch name the kit and its version in its `User-Agent`.
 - 0.6.2 fixed two things an audit found: a mistyped case name passed silently, and `check-tle` on a missing file printed a traceback.
+- 0.7.0 is about the grader itself. SM-26 answered [my audit ask](https://github.com/hneogy/gp-omm-conformance/issues/1) with seven wrong-on-purpose parsers that passed 0.6.1, and two blind audits wrote twenty-one more. What got through is closed, all of them are now tests, and more is graded before any fetch. No published case verdict moved.
 
 ## Quick start
 
@@ -83,7 +84,7 @@ gpconf run --adapter mypkg.gpconf_adapter:Parser --json report.json   # your par
 
 ## GPKit, for Swift
 
-[GPKit](https://github.com/hneogy/GPKit) reads GP data — OMM and TLE, six-digit catalog numbers included — and passes gpconf. v1.0.0, MIT, on the [Swift Package Index](https://swiftpackageindex.com/hneogy/GPKit). Two reports to the Swift readers are open: [SatelliteKit #16](https://github.com/gavineadie/SatelliteKit/issues/16) (B* read 48 orders of magnitude too small) and [swift-sgp4 #4](https://github.com/csanfilippo/swift-sgp4/issues/4) (satellites from 100000 up refused).
+[GPKit](https://github.com/hneogy/GPKit) reads GP data — OMM and TLE, six-digit catalog numbers included — and passes gpconf. v1.0.0, MIT, on the [Swift Package Index](https://swiftpackageindex.com/hneogy/GPKit). Two reports to the Swift readers: [SatelliteKit #16](https://github.com/gavineadie/SatelliteKit/issues/16) (B* read 48 orders of magnitude too small), open, and [swift-sgp4 #4](https://github.com/csanfilippo/swift-sgp4/issues/4) (satellites from 100000 up refused), fixed by the maintainer in 4.1.0.
 
 ## Elsewhere
 
