@@ -32,7 +32,7 @@ Each run by hand at the version named, six on 2026-09-24 against the seventeen c
 
 > **gods-eye-view main ce671ce** — [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906)  
 > Five-digit ids right, 1998 epoch pivots.  
-> Alpha-5 satellites collapse onto one entry keyed NaN; the rest dropped (#767 open). A set missing a line dropped the rest of its group (#906): xiehuanyi fixed that in [PR #936](https://github.com/bilawalsidhu/gods-eye-view/pull/936), merged 2026-10-12, in no release yet.
+> Alpha-5 satellites collapsed onto one entry keyed NaN, the rest dropped: my PR #767 fixed it, merged 2026-10-17. A set missing a line dropped the rest of its group (#906): xiehuanyi fixed that in [PR #936](https://github.com/bilawalsidhu/gods-eye-view/pull/936), merged 2026-10-12. Both are in v0.3.0.
 
 > **SatDump 1.2.2 and master** — [#1221](https://github.com/SatDump/SatDump/issues/1221)  
 > Five-digit sets exact, six-digit CSV ids on master.  
@@ -62,7 +62,7 @@ Every report, with who fixed what and which release has it, is on one page: **[t
 
 ## Releases
 
-gpconf is at v0.7.0, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo under the concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), which always resolves to the latest release; 0.7.0's own is [10.5281/zenodo.23382463](https://doi.org/10.5281/zenodo.23382463). From 0.7.0 it is under Apache-2.0; releases up to 0.6.2 stay MIT. Since it became installable with pip at 0.3.0:
+[gpconf](https://github.com/hneogy/gp-omm-conformance) is at v0.8.0, on [PyPI](https://pypi.org/project/gpconf/) and archived on Zenodo under the concept DOI [10.5281/zenodo.22867654](https://doi.org/10.5281/zenodo.22867654), which always resolves to the latest release; 0.8.0's own is [10.5281/zenodo.23853937](https://doi.org/10.5281/zenodo.23853937). From 0.7.0 it is under Apache-2.0; releases up to 0.6.2 stay MIT. Since it became installable with pip at 0.3.0:
 
 - 0.4.0 added the eighteenth case, the first to hand a parser corrupt input.
 - 0.5.0 let an adapter say "unsupported" for an operation it does not have, counted each record once, and made the package builds reproducible.
@@ -71,6 +71,7 @@ gpconf is at v0.7.0, on [PyPI](https://pypi.org/project/gpconf/) and archived on
 - 0.6.1 made the fetch name the kit and its version in its `User-Agent`.
 - 0.6.2 fixed two things an audit found: a mistyped case name passed silently, and `check-tle` on a missing file printed a traceback.
 - 0.7.0 is about the grader itself. SM-26 answered [my audit ask](https://github.com/hneogy/gp-omm-conformance/issues/1) with seven wrong-on-purpose parsers that passed 0.6.1, and two blind audits wrote twenty-one more. What got through is closed, all of them are now tests, and more is graded before any fetch. No published case verdict moved.
+- 0.8.0 grades every copy of a catalog number: when a file holds the same id more than once, each copy a parser returns is checked against the record it matches, so a parser that returns the last copy twice no longer passes. Before the release I ran a mutation test of the grading code; the tests caught 75.5% of the changes, and the survivors are listed for 0.8.1. One published verdict moved: python-sgp4's mean-motion derivative case now passes within tolerance.
 
 ## Quick start
 
