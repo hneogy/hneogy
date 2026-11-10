@@ -18,9 +18,9 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 
 20 libraries so far, each run at the version and on the date its report names, and every finding reproduced on the library's own code before it was reported. These are results for a specific version on a specific date, not verdicts on the projects. Many of the first findings are Alpha-5 TLE failures, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today. States and releases as of 2026-11-10; the whole record, with who fixed what, is on **[the upstream record](https://gpconf.neogy.dev/upstream/)**.
 
-36 findings: **7 fixed by my pull requests**, **9 fixed by maintainers and contributors after my report**, **17 still open**, and 3 that ended another way.
+37 findings: **8 fixed by my pull requests**, **9 fixed by maintainers and contributors after my report**, **17 still open**, and 3 that ended another way.
 
-### Fixed by my pull requests (7)
+### Fixed by my pull requests (8)
 
 - **python-sgp4**: an empty `OBJECT_ID` in OMM XML raised `TypeError`. [#171](https://github.com/brandon-rhodes/python-sgp4/issues/171), [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172), merged 2026-09-24, not yet released.
 - **satellite.js**: OMM JSON epochs truncated to the millisecond. [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), merged 2026-09-26, not yet released.
@@ -29,6 +29,7 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 - **Gpredict**: the mean motion lost its last digit on every record. [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428), merged 2026-10-08, released in v2.7.
 - **gods-eye-view**: Alpha-5 satellites collapsed onto one entry keyed NaN, the rest dropped. [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), merged 2026-10-17, released in v0.3.0.
 - **tle.js**: Alpha-5 fields gave NaN; two-digit years pivoted at 50. [#62](https://github.com/davidcalhoun/tle.js/issues/62), [PR #64](https://github.com/davidcalhoun/tle.js/pull/64), merged 2026-10-19, released in v6.0.0.
+- **SGP.NET**: Alpha-5 TLEs refused. [#35](https://github.com/parzivail/SGP.NET/issues/35), [PR #47](https://github.com/parzivail/SGP.NET/pull/47), merged 2026-11-10, not yet released.
 
 ### Fixed by maintainers and contributors after my report (9)
 
@@ -58,9 +59,9 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 - **SatelliteKit**: B* read from a TLE as e-53 instead of e-05. [#16](https://github.com/gavineadie/SatelliteKit/issues/16), [PR #17](https://github.com/gavineadie/SatelliteKit/pull/17), open; a fix by djsincla in review.
 - **SatelliteKit**: deep-space Lyddane check on `abs(inclination)` where Vallado's is signed. [#24](https://github.com/gavineadie/SatelliteKit/issues/24), open.
 - **SGPKit (swift-sgp4)**: `TLEDecoder.decodeCollection` drops every TLE in a file for one bad set. [#16](https://github.com/csanfilippo/swift-sgp4/issues/16), open.
-- **SGP.NET**: Alpha-5 TLEs refused (an open feature request; my repro and my PR). [#35](https://github.com/parzivail/SGP.NET/issues/35), [PR #47](https://github.com/parzivail/SGP.NET/pull/47), open.
 - **brahe**: `OMM.from_str` refuses CelesTrak's ndm-wrapped XML and KVN with an empty CREATION_DATE; `parse_norad_id("A+123")` accepted; Alpha-5 encoding below 100000 unpadded. [#620](https://github.com/duncaneddy/brahe/issues/620), open.
 - **sgp4 crate (Rust)**: a type 4 (SGP4-XP) TLE propagated as plain SGP4. [#23](https://github.com/neuromorphicsystems/sgp4/issues/23), open.
+- **SGP.NET**: `OmmKvnParser` refuses a day-of-year EPOCH and a unit in brackets, two forms CCSDS 502.0-B-3 allows. [#48](https://github.com/parzivail/SGP.NET/issues/48), open.
 
 ### Ended another way (3)
 
@@ -86,7 +87,7 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 | SatelliteKit |  |  | 2 |  |
 | satkit |  |  | 1 |  |
 | satvis |  | 1 |  |  |
-| SGP.NET |  |  | 1 |  |
+| SGP.NET | 1 |  | 1 |  |
 | sgp4 crate (Rust) |  |  | 1 |  |
 | SGPKit (swift-sgp4) |  | 1 | 1 |  |
 | strf |  |  | 1 |  |
