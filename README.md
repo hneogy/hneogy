@@ -16,92 +16,82 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 
 ## Libraries against gpconf
 
-20 libraries so far, each run at the version and on the date named, and every finding reproduced on the library's own code before it was reported. These are results for a specific version on a specific date, not verdicts on the projects. The status after each finding is as of 2026-11-10. Many of the first findings are Alpha-5 TLE failures, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today.
+20 libraries so far, each run at the version and on the date its report names, and every finding reproduced on the library's own code before it was reported. These are results for a specific version on a specific date, not verdicts on the projects. Many of the first findings are Alpha-5 TLE failures, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today. States and releases as of 2026-11-10; the whole record, with who fixed what, is on **[the upstream record](https://gpconf.neogy.dev/upstream/)**.
 
-**PyEphem 4.2.1, 2026-09-24**
-- Alpha-5 fields read as catalog number 0, silently: [#296](https://github.com/brandon-rhodes/pyephem/issues/296), open.
-- a letter in the epoch field accepted and the epoch read up to it: [#297](https://github.com/brandon-rhodes/pyephem/issues/297), closed by the maintainer, no change linked.
+36 findings: **7 fixed by my pull requests**, **9 fixed by maintainers and contributors after my report**, **17 still open**, and 3 that ended another way.
 
-**satellite.js 7.1.0, 2026-09-24**
-- OMM JSON epochs truncated to the millisecond: [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), my PR merged 2026-09-26, not yet released.
-- no decoder for Alpha-5 catalog fields (TLE ids come back as strings): [PR #187](https://github.com/shashwatak/satellite-js/pull/187), my PR merged 2026-09-28, not yet released.
-- a stray letter in a TLE field read with no error: [#190](https://github.com/shashwatak/satellite-js/issues/190), [PR #197](https://github.com/shashwatak/satellite-js/pull/197), my PR merged 2026-10-14, not yet released.
+### Fixed by my pull requests (7)
 
-**Gpredict 2.6, 2026-09-24**
-- the mean motion lost its last digit on every record: [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428), my PR, released in v2.7.
-- a letter in the epoch field accepted: [#427](https://github.com/csete/gpredict/issues/427), [PR #430](https://github.com/csete/gpredict/pull/430), fixed by Wahaj18, released in v2.7.
+- **python-sgp4**: an empty `OBJECT_ID` in OMM XML raised `TypeError`. [#171](https://github.com/brandon-rhodes/python-sgp4/issues/171), [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172), merged 2026-09-24, not yet released.
+- **satellite.js**: OMM JSON epochs truncated to the millisecond. [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), merged 2026-09-26, not yet released.
+- **satellite.js**: no decoder for Alpha-5 catalog fields. [PR #187](https://github.com/shashwatak/satellite-js/pull/187), merged 2026-09-28, not yet released.
+- **satellite.js**: a stray letter in a TLE field read with no error. [#190](https://github.com/shashwatak/satellite-js/issues/190), [PR #197](https://github.com/shashwatak/satellite-js/pull/197), merged 2026-10-14, not yet released.
+- **Gpredict**: the mean motion lost its last digit on every record. [#426](https://github.com/csete/gpredict/issues/426), [PR #428](https://github.com/csete/gpredict/pull/428), merged 2026-10-08, released in v2.7.
+- **gods-eye-view**: Alpha-5 satellites collapsed onto one entry keyed NaN, the rest dropped. [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), merged 2026-10-17, released in v0.3.0.
+- **tle.js**: Alpha-5 fields gave NaN; two-digit years pivoted at 50. [#62](https://github.com/davidcalhoun/tle.js/issues/62), [PR #64](https://github.com/davidcalhoun/tle.js/pull/64), merged 2026-10-19, released in v6.0.0.
 
-**gods-eye-view main ce671ce, 2026-09-24**
-- Alpha-5 satellites collapsed onto one entry keyed NaN, the rest dropped: [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), my PR, released in v0.3.0.
-- a set missing a line dropped the rest of its group: [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906), [PR #936](https://github.com/bilawalsidhu/gods-eye-view/pull/936), fixed by xiehuanyi, released in v0.3.0.
+### Fixed by maintainers and contributors after my report (9)
 
-**SatDump 1.2.2 and master f3d82ad, 2026-09-24**
-- Alpha-5 sets dropped silently; SupGP CSV rejected whole on master: [#1221](https://github.com/SatDump/SatDump/issues/1221), closed by me after the maintainers said both parts were already planned.
+- **astroz**: Alpha-5 decoded without skipping I and O. [#97](https://github.com/ATTron/astroz/issues/97), [PR #99](https://github.com/ATTron/astroz/pull/99), fixed by ATTron, the maintainer, released in v0.13.0.
+- **astroz**: `Tle.epoch` off by hundreds of days. [#98](https://github.com/ATTron/astroz/issues/98), [PR #99](https://github.com/ATTron/astroz/pull/99), fixed by ATTron, the maintainer, released in v0.13.0.
+- **astroz**: seconds passed through a half-precision float, up to 15.5 ms off. [#102](https://github.com/ATTron/astroz/issues/102), [PR #104](https://github.com/ATTron/astroz/pull/104), fixed by ATTron, the maintainer, released in v0.14.0.
+- **libsgp4**: every Alpha-5 field refused (results posted on the open PR). [PR #42](https://github.com/dnwrnr/sgp4/pull/42), [PR #46](https://github.com/dnwrnr/sgp4/pull/46), fixed by dnwrnr, the maintainer, released in v3.0.
+- **Gpredict**: a letter in the epoch field accepted. [#427](https://github.com/csete/gpredict/issues/427), [PR #430](https://github.com/csete/gpredict/pull/430), fixed by Wahaj18, a contributor, released in v2.7.
+- **gods-eye-view**: a set missing a line dropped the rest of its group. [#906](https://github.com/bilawalsidhu/gods-eye-view/issues/906), [PR #936](https://github.com/bilawalsidhu/gods-eye-view/pull/936), fixed by xiehuanyi, a contributor, released in v0.3.0.
+- **SGPKit (swift-sgp4)**: satellites numbered 100000 and up refused. [#4](https://github.com/csanfilippo/swift-sgp4/issues/4), fixed by csanfilippo, the maintainer, released in 4.1.0.
+- **satvis**: `ommToTle` wrote element set 999 for `ELEMENT_SET_NO` 0. [#84](https://github.com/anttikuosmanen-rgb/satvis/issues/84), [PR #85](https://github.com/anttikuosmanen-rgb/satvis/pull/85), fixed by anttikuosmanen-rgb, the maintainer, on master; the project has no releases.
+- **akhenakh/sgp4**: Alpha-5 catalog numbers refused; a type 4 TLE propagated as SGP4. [#16](https://github.com/akhenakh/sgp4/issues/16), fixed by Fabrice Aneche (akhenakh), the maintainer, released in v1.0.4.
 
-**libsgp4 master 661e057 (2026-09-24) and v3.0 (2026-09-27)**
-- Alpha-5 fields refused (results posted on the open PR): [PR #42](https://github.com/dnwrnr/sgp4/pull/42), [PR #46](https://github.com/dnwrnr/sgp4/pull/46), fixed by the maintainer's PR #46, released in v3.0.
-- epoch rounded by 8 µs; `FromCsv` reads stray microseconds: [#45](https://github.com/dnwrnr/sgp4/issues/45), open.
+### Reported, still open (17)
 
-**tle.js 5.0.3, 2026-09-24**
-- Alpha-5 fields give NaN; two-digit years pivot at 50: [#62](https://github.com/davidcalhoun/tle.js/issues/62), [PR #64](https://github.com/davidcalhoun/tle.js/pull/64), my PR, released in v6.0.0.
-- `getEpochDay()` reads up to a stray letter and `isValidTLE()` calls the TLE valid: [#63](https://github.com/davidcalhoun/tle.js/issues/63), open.
+- **PyEphem**: Alpha-5 fields read as catalog number 0, silently. [#296](https://github.com/brandon-rhodes/pyephem/issues/296), open.
+- **python-sgp4**: `Satrec.sgp4init` writes I and O as Alpha-5 letters. [#173](https://github.com/brandon-rhodes/python-sgp4/issues/173), open.
+- **python-sgp4**: a type 4 (SGP4-XP) TLE propagated as plain SGP4. [#178](https://github.com/brandon-rhodes/python-sgp4/issues/178), open.
+- **python-sgp4**: line 2's catalog number not checked against line 1's. [#179](https://github.com/brandon-rhodes/python-sgp4/issues/179), open; the maintainer keeps this check out of scope.
+- **Vallado's SGP4 code (CelesTrak's repository)**: `twoline2rv` reads an Alpha-5 field beginning with I or O as a five-digit number. [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172), open.
+- **Vallado's SGP4 code (CelesTrak's repository)**: `twoline2rv` returns the element set and revolution numbers with the checksum digit attached. [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174), open.
+- **strf**: no range check in `number_to_alpha5` above 339999. [#88](https://github.com/cbassa/strf/issues/88), [PR #89](https://github.com/cbassa/strf/pull/89), open; a fix by ppapadeas in review.
+- **libsgp4**: epoch rounded by 8 µs; `FromCsv` reads stray microseconds. [#45](https://github.com/dnwrnr/sgp4/issues/45), open.
+- **tle.js**: `getEpochDay()` reads up to a stray letter and `isValidTLE()` calls the TLE valid. [#63](https://github.com/davidcalhoun/tle.js/issues/63), open.
+- **Basilisk**: `satOmm2elem` skipped CelesTrak's KVN (`MEAN_ELEMENT_THEORY = SGP/SGP4`). [#1673](https://github.com/AVSLab/basilisk/issues/1673), [PR #1675](https://github.com/AVSLab/basilisk/pull/1675), open; a fix by schaubh in review.
+- **satkit**: `TLE.from_lines` drops a whole file for one bad set. [#286](https://github.com/ssmichael1/satkit/issues/286), open.
+- **SatelliteKit**: B* read from a TLE as e-53 instead of e-05. [#16](https://github.com/gavineadie/SatelliteKit/issues/16), [PR #17](https://github.com/gavineadie/SatelliteKit/pull/17), open; a fix by djsincla in review.
+- **SatelliteKit**: deep-space Lyddane check on `abs(inclination)` where Vallado's is signed. [#24](https://github.com/gavineadie/SatelliteKit/issues/24), open.
+- **SGPKit (swift-sgp4)**: `TLEDecoder.decodeCollection` drops every TLE in a file for one bad set. [#16](https://github.com/csanfilippo/swift-sgp4/issues/16), open.
+- **SGP.NET**: Alpha-5 TLEs refused (an open feature request; my repro and my PR). [#35](https://github.com/parzivail/SGP.NET/issues/35), [PR #47](https://github.com/parzivail/SGP.NET/pull/47), open.
+- **brahe**: `OMM.from_str` refuses CelesTrak's ndm-wrapped XML and KVN with an empty CREATION_DATE; `parse_norad_id("A+123")` accepted; Alpha-5 encoding below 100000 unpadded. [#620](https://github.com/duncaneddy/brahe/issues/620), open.
+- **sgp4 crate (Rust)**: a type 4 (SGP4-XP) TLE propagated as plain SGP4. [#23](https://github.com/neuromorphicsystems/sgp4/issues/23), open.
 
-**astroz main d558933, 2026-09-25**
-- Alpha-5 decoded without skipping I and O: [#97](https://github.com/ATTron/astroz/issues/97), fixed by the maintainer, released in v0.13.0.
-- `Tle.epoch` off by hundreds of days: [#98](https://github.com/ATTron/astroz/issues/98), fixed by the maintainer, released in v0.13.0.
-- seconds passed through a half-precision float, up to 15.5 ms off: [#102](https://github.com/ATTron/astroz/issues/102), fixed by the maintainer, released in v0.14.0.
+### Ended another way (3)
 
-**python-sgp4 2.27, 2026-09-21 to 2026-11-08**
-- an empty `OBJECT_ID` in OMM XML raised `TypeError`: [#171](https://github.com/brandon-rhodes/python-sgp4/issues/171), [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172), my PR merged 2026-09-24, not yet released.
-- `Satrec.sgp4init` writes I and O as Alpha-5 letters: [#173](https://github.com/brandon-rhodes/python-sgp4/issues/173), open.
-- an ephemeris type 4 (SGP4-XP) TLE propagated as plain SGP4: [#178](https://github.com/brandon-rhodes/python-sgp4/issues/178), open.
-- line 2's catalog number not checked against line 1's: [#179](https://github.com/brandon-rhodes/python-sgp4/issues/179), open; the maintainer keeps this check out of scope.
+- **PyEphem**: a letter in the epoch field accepted and the epoch read up to it. [#297](https://github.com/brandon-rhodes/pyephem/issues/297), closed by the maintainer without a change.
+- **SatDump**: Alpha-5 sets dropped silently; SupGP CSV rejected whole on master. [#1221](https://github.com/SatDump/SatDump/issues/1221), closed by me after the maintainers said both parts were already planned.
+- **python-sgp4**: nine-digit NORAD_CAT_ID refused by the OMM reader: someone else's report (michaelbaisch), where I tested the open pull request. [#169](https://github.com/brandon-rhodes/python-sgp4/issues/169), open.
 
-**Vallado's SGP4 code in CelesTrak's repository, 4b04ddc**
-- `twoline2rv` reads an Alpha-5 field beginning with I or O as a five-digit number: [#172](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/172), open.
-- `twoline2rv` returns the element set and revolution numbers with the checksum digit attached: [#174](https://github.com/CelesTrak/fundamentals-of-astrodynamics/issues/174), open.
+### Per library
 
-**strf 92d2425, 2026-09-23**
-- no range check in `number_to_alpha5` above 339999: [#88](https://github.com/cbassa/strf/issues/88), [PR #89](https://github.com/cbassa/strf/pull/89), open; I tested the open fix, PR #89 by ppapadeas.
-
-**satvis 71e1e3b, 2026-11-08**
-- `ommToTle` writes element set 999 for `ELEMENT_SET_NO` 0: [#84](https://github.com/anttikuosmanen-rgb/satvis/issues/84), [PR #85](https://github.com/anttikuosmanen-rgb/satvis/pull/85), fixed by the maintainer on master; the project has no releases.
-
-**Basilisk develop 016955f, 2026-11-08**
-- `satOmm2elem` skipped CelesTrak's KVN (`MEAN_ELEMENT_THEORY = SGP/SGP4`): [#1673](https://github.com/AVSLab/basilisk/issues/1673), [PR #1675](https://github.com/AVSLab/basilisk/pull/1675), fix PR #1675 by schaubh open; I tested it.
-
-**satkit 0.24.2, 2026-11-08**
-- `TLE.from_lines` drops a whole file for one bad set: [#286](https://github.com/ssmichael1/satkit/issues/286), open.
-
-**SatelliteKit 2.1.2, 2026-10-06 to 2026-11-09**
-- B* read from a TLE as e-53 instead of e-05: [#16](https://github.com/gavineadie/SatelliteKit/issues/16), [PR #17](https://github.com/gavineadie/SatelliteKit/pull/17), open; fix PR #17 by djsincla open.
-- deep-space Lyddane check on `abs(inclination)` where Vallado's is signed: [#24](https://github.com/gavineadie/SatelliteKit/issues/24), open.
-
-**SGPKit (swift-sgp4) 3.1.0 on 2026-10-06 and 4.4.0 on 2026-11-10**
-- satellites numbered 100000 and up refused (3.1.0): [#4](https://github.com/csanfilippo/swift-sgp4/issues/4), fixed by the maintainer, released in 4.1.0.
-- `TLEDecoder.decodeCollection` drops every TLE in a file for one bad set (4.4.0): [#16](https://github.com/csanfilippo/swift-sgp4/issues/16), open.
-
-**SGP.NET 1.6.0, 2026-11-10**
-- Alpha-5 TLEs refused (an open feature request; my repro, and my PR): [#35](https://github.com/parzivail/SGP.NET/issues/35), [PR #47](https://github.com/parzivail/SGP.NET/pull/47), open.
-
-**brahe 1.8.1, 2026-11-10**
-- `OMM.from_str` refuses CelesTrak's ndm-wrapped XML and KVN with an empty CREATION_DATE; `parse_norad_id("A+123")` accepted; Alpha-5 encoding below 100000 unpadded: [#620](https://github.com/duncaneddy/brahe/issues/620), open.
-
-**akhenakh/sgp4 v1.0.2, 2026-11-10**
-- Alpha-5 catalog numbers refused; a type 4 TLE propagated as SGP4: [#16](https://github.com/akhenakh/sgp4/issues/16), fixed by the maintainer, released in v1.0.4.
-
-**sgp4 crate (Rust) 2.4.0, 2026-11-10**
-- a type 4 (SGP4-XP) TLE propagated as plain SGP4: [#23](https://github.com/neuromorphicsystems/sgp4/issues/23), open.
-
-## What has landed
-
-Every report, with who fixed what and which release has it, is on one page: **[the upstream record](https://gpconf.neogy.dev/upstream/)**. The short version, as of 2026-11-10:
-
-- 35 findings across 20 libraries.
-- 11 fixed and in a release.
-- 5 fixed and merged, not yet in a release.
-- 17 open.
-- 2 ended another way: one closed by the maintainer without a change, and one I closed after the maintainers said both parts were already planned.
+| library | fixed by my PR | fixed by others | open | other |
+|---|---|---|---|---|
+| akhenakh/sgp4 |  | 1 |  |  |
+| astroz |  | 3 |  |  |
+| Basilisk |  |  | 1 |  |
+| brahe |  |  | 1 |  |
+| gods-eye-view | 1 | 1 |  |  |
+| Gpredict | 1 | 1 |  |  |
+| libsgp4 |  | 1 | 1 |  |
+| PyEphem |  |  | 1 | 1 |
+| python-sgp4 | 1 |  | 3 | 1 |
+| SatDump |  |  |  | 1 |
+| satellite.js | 3 |  |  |  |
+| SatelliteKit |  |  | 2 |  |
+| satkit |  |  | 1 |  |
+| satvis |  | 1 |  |  |
+| SGP.NET |  |  | 1 |  |
+| sgp4 crate (Rust) |  |  | 1 |  |
+| SGPKit (swift-sgp4) |  | 1 | 1 |  |
+| strf |  |  | 1 |  |
+| tle.js | 1 |  | 1 |  |
+| Vallado's SGP4 code (CelesTrak's repository) |  |  | 2 |  |
 
 ## Releases
 
