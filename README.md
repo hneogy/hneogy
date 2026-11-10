@@ -18,9 +18,9 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 
 20 libraries so far, each run at the version and on the date its report names, and every finding reproduced on the library's own code before it was reported. These are results for a specific version on a specific date, not verdicts on the projects. Many of the first findings are Alpha-5 TLE failures, but CelesTrak emits no Alpha-5 at all, so users who take their TLEs from CelesTrak don't meet those failures today. States and releases as of 2026-11-10; the whole record, with who fixed what, is on **[the upstream record](https://gpconf.neogy.dev/upstream/)**.
 
-37 findings: **8 fixed by my pull requests**, **9 fixed by maintainers and contributors after my report**, **17 still open**, and 3 that ended another way.
+37 findings: **9 fixed by my pull requests**, **9 fixed by maintainers and contributors after my report**, **16 still open**, and 3 that ended another way.
 
-### Fixed by my pull requests (8)
+### Fixed by my pull requests (9)
 
 - **python-sgp4**: an empty `OBJECT_ID` in OMM XML raised `TypeError`. [#171](https://github.com/brandon-rhodes/python-sgp4/issues/171), [PR #172](https://github.com/brandon-rhodes/python-sgp4/pull/172), merged 2026-09-24, not yet released.
 - **satellite.js**: OMM JSON epochs truncated to the millisecond. [#185](https://github.com/shashwatak/satellite-js/issues/185), [PR #186](https://github.com/shashwatak/satellite-js/pull/186), merged 2026-09-26, not yet released.
@@ -30,6 +30,7 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 - **gods-eye-view**: Alpha-5 satellites collapsed onto one entry keyed NaN, the rest dropped. [#751](https://github.com/bilawalsidhu/gods-eye-view/issues/751), [PR #767](https://github.com/bilawalsidhu/gods-eye-view/pull/767), merged 2026-10-17, released in v0.3.0.
 - **tle.js**: Alpha-5 fields gave NaN; two-digit years pivoted at 50. [#62](https://github.com/davidcalhoun/tle.js/issues/62), [PR #64](https://github.com/davidcalhoun/tle.js/pull/64), merged 2026-10-19, released in v6.0.0.
 - **SGP.NET**: Alpha-5 TLEs refused. [#35](https://github.com/parzivail/SGP.NET/issues/35), [PR #47](https://github.com/parzivail/SGP.NET/pull/47), merged 2026-11-10, not yet released.
+- **SGP.NET**: `OmmKvnParser` refused a day-of-year EPOCH and a unit in brackets, two forms CCSDS 502.0-B-3 allows. [#48](https://github.com/parzivail/SGP.NET/issues/48), [PR #49](https://github.com/parzivail/SGP.NET/pull/49), merged 2026-11-10, not yet released.
 
 ### Fixed by maintainers and contributors after my report (9)
 
@@ -43,7 +44,7 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 - **satvis**: `ommToTle` wrote element set 999 for `ELEMENT_SET_NO` 0. [#84](https://github.com/anttikuosmanen-rgb/satvis/issues/84), [PR #85](https://github.com/anttikuosmanen-rgb/satvis/pull/85), fixed by anttikuosmanen-rgb, the maintainer, on master; the project has no releases.
 - **akhenakh/sgp4**: Alpha-5 catalog numbers refused; a type 4 TLE propagated as SGP4. [#16](https://github.com/akhenakh/sgp4/issues/16), fixed by Fabrice Aneche (akhenakh), the maintainer, released in v1.0.4.
 
-### Reported, still open (17)
+### Reported, still open (16)
 
 - **PyEphem**: Alpha-5 fields read as catalog number 0, silently. [#296](https://github.com/brandon-rhodes/pyephem/issues/296), open.
 - **python-sgp4**: `Satrec.sgp4init` writes I and O as Alpha-5 letters. [#173](https://github.com/brandon-rhodes/python-sgp4/issues/173), open.
@@ -61,7 +62,6 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 - **SGPKit (swift-sgp4)**: `TLEDecoder.decodeCollection` drops every TLE in a file for one bad set. [#16](https://github.com/csanfilippo/swift-sgp4/issues/16), open.
 - **brahe**: `OMM.from_str` refuses CelesTrak's ndm-wrapped XML and KVN with an empty CREATION_DATE; `parse_norad_id("A+123")` accepted; Alpha-5 encoding below 100000 unpadded. [#620](https://github.com/duncaneddy/brahe/issues/620), open.
 - **sgp4 crate (Rust)**: a type 4 (SGP4-XP) TLE propagated as plain SGP4. [#23](https://github.com/neuromorphicsystems/sgp4/issues/23), open.
-- **SGP.NET**: `OmmKvnParser` refuses a day-of-year EPOCH and a unit in brackets, two forms CCSDS 502.0-B-3 allows. [#48](https://github.com/parzivail/SGP.NET/issues/48), open.
 
 ### Ended another way (3)
 
@@ -87,7 +87,7 @@ On 11 July 2026 the US Space Force catalog assigned number 100000 (to the Portug
 | SatelliteKit |  |  | 2 |  |
 | satkit |  |  | 1 |  |
 | satvis |  | 1 |  |  |
-| SGP.NET | 1 |  | 1 |  |
+| SGP.NET | 2 |  |  |  |
 | sgp4 crate (Rust) |  |  | 1 |  |
 | SGPKit (swift-sgp4) |  | 1 | 1 |  |
 | strf |  |  | 1 |  |
