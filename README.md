@@ -118,7 +118,7 @@ gpconf run --adapter mypkg.gpconf_adapter:Parser --json report.json   # your par
 
 ## GPKit, for Swift
 
-[GPKit](https://github.com/hneogy/GPKit) reads GP data — OMM and TLE, six-digit catalog numbers included — and passes gpconf: 17 of its 18 cases, none failing (the eighteenth checks data and runs no parser). [v1.3.0](https://github.com/hneogy/GPKit/releases/tag/v1.3.0), MIT, on the [Swift Package Index](https://swiftpackageindex.com/hneogy/GPKit). Each release also carries a playground module: GPKit built for WebAssembly, for a page that reads a TLE or an OMM and works out the next day's passes in the browser, held by CI to the native build's answers. Reports to the other Swift readers are listed above, under SatelliteKit and SGPKit.
+[GPKit](https://github.com/hneogy/GPKit) reads GP data — OMM and TLE, six-digit catalog numbers included — and passes gpconf: 17 of its 18 cases, none failing (the eighteenth checks data and runs no parser). [v1.3.0](https://github.com/hneogy/GPKit/releases/tag/v1.3.0), MIT, on the [Swift Package Index](https://swiftpackageindex.com/hneogy/GPKit). Each release also carries a playground module, GPKit built for WebAssembly, held by CI to the native build's answers; it runs [the playground](https://gpkit.gppasses.com/playground/), a page that reads a TLE or an OMM and works out the next day's passes in the browser. Reports to the other Swift readers are listed above, under SatelliteKit and SGPKit.
 
 ## Elsewhere
 
